@@ -7,5 +7,9 @@ public class HellolibMain {
     {
         Log.e("HellolibMain","fc");
     }
+    public static void fc1()
+    {
+        Log.e("HellolibMain","fc1");
+    }
 
 }
