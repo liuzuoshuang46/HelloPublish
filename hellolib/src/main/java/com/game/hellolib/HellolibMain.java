@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HellolibMain {
-    private String TAG = "HellolibMain2";
+    private String TAG = "HellolibMain3";
     private static  HellolibMain _instance = null;
     public static HellolibMain getsInstance() {
         if(HellolibMain._instance == null)
