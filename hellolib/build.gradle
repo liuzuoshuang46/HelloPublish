@@ -20,6 +20,7 @@ android {
         consumerProguardFiles "consumer-rules.pro"
     }
 
+
     buildTypes {
         release {
             minifyEnabled false
@@ -54,18 +55,23 @@ android {
                     def snapshotsRepoUrl = "$baseUrl/repos/snapshots"
                     url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
                 }
+                flatDir {
+                    dirs 'libs'
+                }
             }
         }
     }
 }
 
 dependencies {
+    implementation(fileTree("libs"));
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.6.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    implementation "com.transsion.pay:paysdk:1.5.4.17"
+//    implementation "com.transsion.pay:paysdk:1.5.4.17"
+//    implementation(name:'paysdk-1.5.4.17', ext:'aar')
 
 
 }
