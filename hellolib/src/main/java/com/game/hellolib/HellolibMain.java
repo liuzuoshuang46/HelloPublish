@@ -14,6 +14,8 @@ import android.util.Log;
 //import com.transsion.pay.paysdk.manager.inter.InitResultCallBack;
 //import com.transsion.pay.paysdk.manager.inter.StartPayCallBack;
 
+import com.transsion.pay.paysdk.manager.PaySDKManager;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,11 +33,12 @@ public class HellolibMain {
         Log.e(TAG,"HellolibMain");
     }
 
-//    public void setStrict(boolean var1)
-//    {
-//        //设置严格模式，默认true，设置true后，经过多次查询后，支付中也会返回失败
-//        PaySDKManager.getsInstance().setStrict(var1);
-//    }
+    public void setStrict(boolean var1)
+    {
+        Log.e(TAG,"setStrict");
+        //设置严格模式，默认true，设置true后，经过多次查询后，支付中也会返回失败
+        PaySDKManager.getsInstance().setStrict(var1);
+    }
 //    public void initAriesPay(Context var1, String var2, String var3, String var4, InitResultCallBack var5) {
 //        this.initAriesPay(var1, "com.transsion.pay.ariessdk.demo", var2, var3, var4, 2, true, var5);
 //    }
