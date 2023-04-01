@@ -55,9 +55,6 @@ android {
                     def snapshotsRepoUrl = "$baseUrl/repos/snapshots"
                     url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
                 }
-                flatDir {
-                    dirs 'libs'
-                }
             }
         }
     }
