@@ -1,7 +1,7 @@
 package com.game.hellolib;
 
 public class HelloStartPayEntity {
-    double amount;
-    String countryCode;
-    String currency;
+    public double amount;
+    public String countryCode;
+    public String currency;
 }

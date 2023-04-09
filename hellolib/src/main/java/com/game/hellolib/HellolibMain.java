@@ -200,7 +200,7 @@ public class HellolibMain {
         PaySDKManager.getsInstance().convertVirtualToLocal(var1,var2,var3);
     }
     //发起在线支付或者短代支付
-    public  void startPay(Activity var1, HelloStartPayEntity var2, HelloStartPayCallBack var3)  {
+    public  void startPay(Activity var1, HelloStartPayEntity var2, HelloStartPayCallBack var3) throws Exception  {
 
         StartPayEntity startPayEntity = new StartPayEntity();
         startPayEntity.amount =  var2.amount;//instance.costPrice;//1.0;//price amount
@@ -212,40 +212,37 @@ public class HellolibMain {
         startPayEntity.matchDown = true;//支持向下取金额的功能，当支付方式支持的金额小 于发起支付的金额，开启这个功能可以匹配该支付方式。默认为false。
         startPayEntity.adjustMode = BigDecimal.ROUND_UP;//设置adjustMode会根据设置 的mode，结合对应的币种来处理传入的金额各个位数取整，以防传入
         startPayEntity.serviceConfigPriority = true;
-        try{
-             PaySDKManager.getsInstance().startPay(var1, startPayEntity, new StartPayCallBack() {
-                @Override
-                public void onOrderCreated(OrderEntity orderEntity) {
-                    //订单创建成功，进入开始支付，如果后续因为崩溃等原因没有收到结果，可以根据这 里的订单号查询订单结果
-                    Log.i(TAG,"onOrderCreated:平台的订单号:"+orderEntity.orderNum);
-                    Log.i(TAG,"onOrderCreated:商户的订单号:"+orderEntity.cpOrderNum);
-                    var3.onOrderCreated(orderEntity);
-                }
 
-                @Override
-                public void onPaySuccess(OrderEntity orderEntity) {
-                    //支付成功
-                    Log.i(TAG,"onPaySuccess:"+orderEntity);
-                    var3.onPaySuccess(orderEntity);
-                }
+         PaySDKManager.getsInstance().startPay(var1, startPayEntity, new StartPayCallBack() {
+            @Override
+            public void onOrderCreated(OrderEntity orderEntity) {
+                //订单创建成功，进入开始支付，如果后续因为崩溃等原因没有收到结果，可以根据这 里的订单号查询订单结果
+                Log.i(TAG,"onOrderCreated:平台的订单号:"+orderEntity.orderNum);
+                Log.i(TAG,"onOrderCreated:商户的订单号:"+orderEntity.cpOrderNum);
+                var3.onOrderCreated(orderEntity);
+            }
 
-                @Override
-                public void onPaying(OrderEntity orderEntity) {
-                    //本地查询超时，后续游戏去服务端确认
-                    Log.i(TAG,"onPaying:"+orderEntity);
-                    var3.onPaying(orderEntity);
-                }
+            @Override
+            public void onPaySuccess(OrderEntity orderEntity) {
+                //支付成功
+                Log.i(TAG,"onPaySuccess:"+orderEntity);
+                var3.onPaySuccess(orderEntity);
+            }
 
-                @Override
-                public void onPayFail(int code, OrderEntity payMode) {
-                    //支付失败，code码说明见下方码表
-                    Log.i(TAG,"onPayFail:"+code);
-                    var3.onPayFail(code,payMode);
-                }
-            });
-        }
-        catch (Exception e){
+            @Override
+            public void onPaying(OrderEntity orderEntity) {
+                //本地查询超时，后续游戏去服务端确认
+                Log.i(TAG,"onPaying:"+orderEntity);
+                var3.onPaying(orderEntity);
+            }
 
-        }
+            @Override
+            public void onPayFail(int code, OrderEntity payMode) {
+                //支付失败，code码说明见下方码表
+                Log.i(TAG,"onPayFail:"+code);
+                var3.onPayFail(code,payMode);
+            }
+        });
+
     }
 }
