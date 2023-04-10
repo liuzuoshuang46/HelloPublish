@@ -1,8 +1,11 @@
 package com.game.hellolib;
 
-import android.app.Activity;
+import com.transsion.pay.paysdk.manager.entity.CountryCurrencyData;
+import com.transsion.pay.paysdk.manager.entity.SupportPayInfoEntity;
 
-import com.transsion.pay.paysdk.manager.inter.InitResultCallBack;
+import java.util.List;
 
-public interface ResultCallBack extends InitResultCallBack {
+public interface ResultCallBack  {
+    void onSuccess(CountryCurrencyData var2);
+    void onFail(int var1);
 }
